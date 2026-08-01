@@ -63,9 +63,80 @@ Monitoring
 
 ## Current Progress
 
+### AWS Setup
 - AWS Account Configured ✅
-- IAM User Created ✅
+- Root User MFA Enabled ✅
+- IAM Admin User Created ✅
+- AWS CLI Installed ✅
 - AWS CLI Configured ✅
+- AWS CLI Authentication Verified ✅
+
+### Terraform Setup
 - Terraform Installed ✅
-- Terraform Initialized ✅
-- First AWS VPC Created Using Terraform ✅
+- Terraform Project Structure Created ✅
+- Terraform Initialized (`terraform init`) ✅
+- Terraform Provider Configured ✅
+
+### AWS Networking
+- Custom VPC Created Using Terraform ✅
+- Terraform State Verified (`terraform state list`) ✅
+- Infrastructure Verified (`terraform show`) ✅
+- Public Subnet 1 Created ✅
+- Public Subnet Verified Using AWS CLI ✅
+
+### Git
+- Git Repository Initialized ✅
+- Initial Project Commit Completed ✅
+- GitHub Repository Updated ✅
+
+---
+
+## Next Milestones
+
+- ⏳ Create Public Subnet 2
+- ⏳ Create Private Subnet 1
+- ⏳ Create Private Subnet 2
+- ⏳ Create Internet Gateway
+- ⏳ Configure Route Tables
+- ⏳ Associate Route Tables
+- ⏳ Configure NAT Gateway
+- ⏳ Create Security Groups
+- ⏳ Launch EC2 Instances
+- ⏳ Configure Ansible
+- ⏳ Install Jenkins
+- ⏳ Deploy Docker Applications
+- ⏳ Configure Kubernetes
+- ⏳ Implement GitOps using ArgoCD
+- ⏳ Configure Prometheus & Grafana
+
+---
+
+## Repository Structure
+aws-enterprise-devops-project/
+├── terraform/
+├── ansible/
+├── kubernetes/
+├── jenkins/
+├── monitoring/
+├── diagrams/
+├── screenshots/
+├── README.md
+├── Daily-Progress.md
+├── Commands.md
+├── Interview-Notes.md
+└── Architecture.md
+---
+
+## Screenshots
+
+All infrastructure creation screenshots are available in the **screenshots/** directory.
+
+Each major milestone is captured and documented for learning and interview reference.
+
+---
+
+## Author
+
+**Pillai Sathya Sudalai**
+
+DevOps | AWS | Terraform | Linux | Docker | Kubernetes | Jenkins | GitHub
