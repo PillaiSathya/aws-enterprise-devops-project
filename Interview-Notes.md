@@ -97,3 +97,43 @@ Examples:
 - Subnet
 - Security Group
 - S3 Bucket
+
+## Terraform Resource References
+
+Example:
+
+```hcl
+vpc_id = aws_vpc.main.id
+```
+
+Terraform automatically retrieves the VPC ID from the created resource and establishes a dependency.
+
+---
+
+## Terraform State
+
+Terraform State maps Terraform configuration to actual infrastructure. It stores resource IDs, attributes, metadata, and dependency information so Terraform can detect infrastructure changes.
+
+---
+
+## Difference Between Default VPC and Custom VPC
+
+Default VPC:
+- Created automatically by AWS.
+- Includes default subnets, route tables, Internet Gateway, and Security Groups.
+
+Custom VPC:
+- Created by users.
+- Fully customizable.
+- Recommended for production environments.
+
+---
+
+## Public Subnet
+
+A subnet becomes public only when:
+
+- An Internet Gateway is attached to the VPC.
+- A Route Table routes `0.0.0.0/0` traffic to the Internet Gateway.
+
+Enabling `map_public_ip_on_launch = true` alone does not make a subnet public.

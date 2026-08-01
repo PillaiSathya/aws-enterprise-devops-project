@@ -196,3 +196,28 @@ aws ec2 describe-vpcs
 - Build Private Subnets
 - Internet Gateway
 - Route Tables
+
+## Session 2 – Public Subnet Creation
+
+**Date:** 1 August 2026
+
+### Objectives
+- Understand Terraform State Refresh
+- Learn Terraform Resource Dependencies
+- Create First Public Subnet
+- Verify Resources using AWS CLI and AWS Console
+
+### Completed Tasks
+- Reviewed Terraform State
+- Used `terraform show` to inspect managed resources
+- Created Public Subnet 1 (10.0.1.0/24)
+- Associated subnet with custom VPC
+- Enabled automatic public IP assignment
+- Verified subnet creation using AWS CLI
+- Verified subnet in AWS Console
+
+### Key Learnings
+- Terraform automatically refreshes state before planning changes.
+- Resources can reference other resources using attributes such as `aws_vpc.main.id`.
+- AWS assigns additional attributes like Route Table ID and Network ACL after resource creation.
+- A subnet is not truly public until an Internet Gateway and appropriate Route Table are configured.

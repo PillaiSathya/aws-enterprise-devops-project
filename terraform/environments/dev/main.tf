@@ -7,3 +7,20 @@ resource "aws_vpc" "main" {
     Project     = "aws-enterprise-devops"
   }
 }
+
+resource "aws_subnet" "public_subnet_1" {
+
+  vpc_id = aws_vpc.main.id
+
+  cidr_block = "10.0.1.0/24"
+
+  availability_zone = "ap-south-1a"
+
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name        = "public-subnet-1"
+    Environment = "dev"
+    Project     = "aws-enterprise-devops"
+  }
+}

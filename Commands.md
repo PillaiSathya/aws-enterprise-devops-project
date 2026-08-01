@@ -98,3 +98,119 @@ terraform version
 ```
 
 Displays installed Terraform version.
+
+Append:
+## Terraform State
+
+```bash
+terraform state list
+```
+
+Lists all resources managed by Terraform.
+
+---
+
+```bash
+terraform show
+```
+
+Displays the current Terraform state and resource attributes.
+
+---
+
+```bash
+terraform fmt
+```
+
+Formats Terraform configuration files.
+
+---
+
+```bash
+terraform validate
+```
+
+Validates Terraform syntax.
+
+---
+
+```bash
+terraform plan
+```
+
+Generates an execution plan showing proposed infrastructure changes.
+
+---
+
+```bash
+terraform apply
+```
+
+Applies the planned infrastructure changes.
+
+---
+
+```bash
+aws ec2 describe-subnets \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1
+```
+
+Verifies the created subnet using the AWS CLI.
+## Terraform State
+
+```bash
+terraform state list
+```
+
+Lists all resources managed by Terraform.
+
+---
+
+```bash
+terraform show
+```
+
+Displays the current Terraform state and resource attributes.
+
+---
+
+```bash
+terraform fmt
+```
+
+Formats Terraform configuration files.
+
+---
+
+```bash
+terraform validate
+```
+
+Validates Terraform syntax.
+
+---
+
+```bash
+terraform plan
+```
+
+Generates an execution plan showing proposed infrastructure changes.
+
+---
+
+```bash
+terraform apply
+```
+
+Applies the planned infrastructure changes.
+
+---
+
+```bash
+aws ec2 describe-subnets \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1
+```
+
+Verifies the created subnet using the AWS CLI.
