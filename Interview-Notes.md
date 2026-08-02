@@ -157,3 +157,16 @@ Both subnets are configured with:
 - map_public_ip_on_launch = true
 
 This automatically assigns a public IP address to EC2 instances launched into these subnets.
+
+## Internet Gateway (IGW)
+
+An Internet Gateway enables communication between a VPC and the Internet.
+
+Key points:
+
+- Attached at the VPC level
+- Allows inbound and outbound internet connectivity
+- Works together with Route Tables
+- Public subnets require a route to the Internet Gateway (0.0.0.0/0)
+
+Without an Internet Gateway, resources inside the VPC cannot access the public Internet.

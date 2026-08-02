@@ -238,3 +238,18 @@ terraform plan
 terraform apply
 terraform state list
 aws ec2 describe-subnets --filters "Name=tag:Project,Values=aws-enterprise-devops" --region ap-south-1
+
+### Internet Gateway
+
+- Created Internet Gateway using Terraform
+- Attached Internet Gateway to the custom VPC
+- Verified using Terraform State
+- Verified using AWS CLI
+- Verified in AWS Console
+
+Commands Used:
+
+terraform plan
+terraform apply
+terraform state list
+aws ec2 describe-internet-gateways --filters "Name=tag:Project,Values=aws-enterprise-devops" --region ap-south-1

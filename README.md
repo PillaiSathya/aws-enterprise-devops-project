@@ -83,6 +83,9 @@ Monitoring
 - Infrastructure Verified (`terraform show`) ✅
 - Public Subnet 1 Created ✅
 - Public Subnet Verified Using AWS CLI ✅
+- Public Subnet 2 Created ✅
+- Public Subnet Verified Using AWS CLI ✅
+- Internet Gateway Created Using Terraform ✅
 
 ### Git
 - Git Repository Initialized ✅
@@ -93,10 +96,6 @@ Monitoring
 
 ## Next Milestones
 
-- ⏳ Create Public Subnet 2
-- ⏳ Create Private Subnet 1
-- ⏳ Create Private Subnet 2
-- ⏳ Create Internet Gateway
 - ⏳ Configure Route Tables
 - ⏳ Associate Route Tables
 - ⏳ Configure NAT Gateway

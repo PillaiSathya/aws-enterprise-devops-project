@@ -37,3 +37,13 @@ resource "aws_subnet" "public_subnet_2" {
     Project     = "aws-enterprise-devops"
   }
 }
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.main.id
+
+  tags = {
+    Name        = "aws-enterprise-igw"
+    Environment = "dev"
+    Project     = "aws-enterprise-devops"
+  }
+}

@@ -226,3 +226,8 @@ terraform apply
 aws ec2 describe-subnets \
 --filters "Name=tag:Project,Values=aws-enterprise-devops" \
 --region ap-south-1
+terraform state list
+
+aws ec2 describe-internet-gateways \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1
