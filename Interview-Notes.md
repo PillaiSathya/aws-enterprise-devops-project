@@ -137,3 +137,23 @@ A subnet becomes public only when:
 - A Route Table routes `0.0.0.0/0` traffic to the Internet Gateway.
 
 Enabling `map_public_ip_on_launch = true` alone does not make a subnet public.
+
+## Public Subnets
+
+A public subnet is a subnet whose route table contains a route to an Internet Gateway.
+
+In this project:
+
+- Public Subnet 1
+  - CIDR: 10.0.1.0/24
+  - AZ: ap-south-1a
+
+- Public Subnet 2
+  - CIDR: 10.0.2.0/24
+  - AZ: ap-south-1b
+
+Both subnets are configured with:
+
+- map_public_ip_on_launch = true
+
+This automatically assigns a public IP address to EC2 instances launched into these subnets.

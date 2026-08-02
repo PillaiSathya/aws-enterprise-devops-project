@@ -214,3 +214,15 @@ aws ec2 describe-subnets \
 ```
 
 Verifies the created subnet using the AWS CLI.
+
+terraform state list
+
+terraform show
+
+terraform plan
+
+terraform apply
+
+aws ec2 describe-subnets \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1

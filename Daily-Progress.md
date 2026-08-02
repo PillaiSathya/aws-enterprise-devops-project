@@ -221,3 +221,20 @@ aws ec2 describe-vpcs
 - Resources can reference other resources using attributes such as `aws_vpc.main.id`.
 - AWS assigns additional attributes like Route Table ID and Network ACL after resource creation.
 - A subnet is not truly public until an Internet Gateway and appropriate Route Table are configured.
+
+### Public Subnet 2
+
+- Added second public subnet using Terraform
+- CIDR Block: 10.0.2.0/24
+- Availability Zone: ap-south-1b
+- Enabled Auto Assign Public IP
+- Verified using Terraform State
+- Verified using AWS CLI
+- Verified in AWS Console
+
+Commands Used:
+
+terraform plan
+terraform apply
+terraform state list
+aws ec2 describe-subnets --filters "Name=tag:Project,Values=aws-enterprise-devops" --region ap-south-1
