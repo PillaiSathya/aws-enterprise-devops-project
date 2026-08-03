@@ -253,3 +253,96 @@ terraform plan
 terraform apply
 terraform state list
 aws ec2 describe-internet-gateways --filters "Name=tag:Project,Values=aws-enterprise-devops" --region ap-south-1
+
+---
+
+---
+
+## Session 3 – Internet Connectivity
+
+**Date:** 3 August 2026
+
+### Objectives
+
+- Create an Internet Gateway
+- Attach the Internet Gateway to the custom VPC
+- Understand how VPCs connect to the Internet
+- Verify resources using Terraform State, AWS CLI, and AWS Console
+
+### Completed Tasks
+
+- Created Internet Gateway using Terraform
+- Attached Internet Gateway to the custom VPC
+- Verified Internet Gateway using Terraform State
+- Verified Internet Gateway using AWS CLI
+- Verified Internet Gateway in AWS Console
+
+### Terraform Resource Added
+
+- aws_internet_gateway
+
+### Commands Used
+
+```bash
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+terraform state list
+
+aws ec2 describe-internet-gateways \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1
+
+Learning
+A VPC is isolated by default and cannot access the Internet.
+An Internet Gateway provides a connection between the VPC and the public Internet.
+Creating an Internet Gateway alone does not provide Internet access.
+A Route Table must contain a route (0.0.0.0/0) pointing to the Internet Gateway for public connectivity.
+Interview Notes
+
+Question: What is an Internet Gateway?
+
+Answer:
+
+An Internet Gateway (IGW) is a highly available AWS-managed component that enables communication between a VPC and the Internet. It is attached to a VPC and is used by Route Tables to forward Internet-bound traffic.
+
+## Session 4 – Networking Components
+
+**Date:** 4 August 2026
+
+### Completed Tasks
+
+- Created Public Route Table
+- Associated Route Table with Public Subnet 1
+- Associated Route Table with Public Subnet 2
+- Added Internet Route (0.0.0.0/0)
+- Created Web Security Group
+- Allowed SSH (22)
+- Allowed HTTP (80)
+- Verified resources using Terraform State
+- Verified resources using AWS CLI
+- Verified resources in AWS Console
+
+### Terraform Resources Added
+
+- aws_route_table
+- aws_route_table_association
+- aws_route
+- aws_security_group
+
+### Learning
+
+- Difference between Route Table and Security Group
+- How Internet Gateway provides internet connectivity
+- Why Route Table Associations are required
+- How Security Groups act as virtual firewalls
+
+## Next Session
+
+- Create EC2 Key Pair
+- Launch EC2 Instance using Terraform
+- Attach Security Group
+- Deploy EC2 into Public Subnet 1
+- Connect to EC2 using SSH
+- Install and verify Nginx Web Server

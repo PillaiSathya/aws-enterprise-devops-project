@@ -231,3 +231,22 @@ terraform state list
 aws ec2 describe-internet-gateways \
 --filters "Name=tag:Project,Values=aws-enterprise-devops" \
 --region ap-south-1
+
+terraform state list
+
+terraform fmt
+
+terraform validate
+
+terraform plan
+
+terraform apply
+
+aws ec2 describe-route-tables \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1
+
+aws ec2 describe-security-groups \
+--filters "Name=tag:Project,Values=aws-enterprise-devops" \
+--region ap-south-1 \
+--no-cli-pager

@@ -170,3 +170,28 @@ Key points:
 - Public subnets require a route to the Internet Gateway (0.0.0.0/0)
 
 Without an Internet Gateway, resources inside the VPC cannot access the public Internet.
+
+---
+
+## Route Table vs Security Group
+
+### Route Table
+
+- Controls where network traffic goes
+- Works at subnet level
+- Contains routes
+- Example:
+  0.0.0.0/0 → Internet Gateway
+
+### Security Group
+
+- Controls what traffic is allowed
+- Works at EC2 instance level
+- Stateful firewall
+- Allows SSH, HTTP, HTTPS etc.
+
+Interview Tip:
+
+Route Table = Path of traffic
+
+Security Group = Permission for traffic

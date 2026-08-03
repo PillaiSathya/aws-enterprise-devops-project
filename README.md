@@ -86,6 +86,10 @@ Monitoring
 - Public Subnet 2 Created ✅
 - Public Subnet Verified Using AWS CLI ✅
 - Internet Gateway Created Using Terraform ✅
+- Public Route Table Created ✅
+- Route Table Associated with Public Subnets ✅
+- Internet Route (0.0.0.0/0) Added ✅
+- Web Security Group Created ✅
 
 ### Git
 - Git Repository Initialized ✅
