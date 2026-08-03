@@ -306,7 +306,7 @@ Question: What is an Internet Gateway?
 Answer:
 
 An Internet Gateway (IGW) is a highly available AWS-managed component that enables communication between a VPC and the Internet. It is attached to a VPC and is used by Route Tables to forward Internet-bound traffic.
-
+```
 ## Session 4 – Networking Components
 
 **Date:** 4 August 2026
