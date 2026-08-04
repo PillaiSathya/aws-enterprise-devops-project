@@ -1,3 +1,25 @@
+
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+
+  owners = ["amazon"]
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-x86_64"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
+
+resource "aws_key_pair" "deployer" {
+  key_name   = "aws-enterprise-key"
+  public_key = file("${path.module}/keys/aws-enterprise-key.pub")
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
@@ -110,6 +132,23 @@ resource "aws_security_group" "web_sg" {
 
   tags = {
     Name        = "web-security-group"
+    Environment = "dev"
+    Project     = "aws-enterprise-devops"
+  }
+}
+
+resource "aws_instance" "web_server" {
+
+  ami                    = data.aws_ami.amazon_linux.id
+  instance_type          = "t3.micro"
+  subnet_id              = aws_subnet.public_subnet_1.id
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
+  key_name               = aws_key_pair.deployer.key_name
+
+  associate_public_ip_address = true
+
+  tags = {
+    Name        = "web-server"
     Environment = "dev"
     Project     = "aws-enterprise-devops"
   }
