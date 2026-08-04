@@ -195,3 +195,110 @@ Interview Tip:
 Route Table = Path of traffic
 
 Security Group = Permission for traffic
+
+# Session 5 – EC2 Deployment & SSH
+
+## EC2
+- EC2 (Elastic Compute Cloud) is a virtual server in AWS.
+- It allows us to run applications in the cloud.
+- EC2 instances are launched inside a VPC and Subnet.
+
+---
+
+## AWS Key Pair
+
+A Key Pair consists of:
+
+- Public Key (stored in AWS)
+- Private Key (stored on local machine)
+
+During instance launch, AWS copies the public key into the EC2 instance.
+
+During SSH login, the private key is used for authentication.
+
+If the private key and public key do not match, SSH authentication fails.
+
+---
+
+## Security Group
+
+Security Groups act as virtual firewalls.
+
+Inbound Rules:
+- SSH (22)
+- HTTP (80)
+
+Outbound:
+- Allow All
+
+Security Groups are Stateful.
+
+---
+
+## SSH Connection
+
+SSH Command:
+
+ssh -i ~/.ssh/aws-key-2 ec2-user@<Public-IP>
+
+Common verification commands:
+
+whoami
+
+hostname
+
+cat /etc/os-release
+
+---
+
+## Terraform Data Source
+
+Terraform Data Sources retrieve existing information from AWS.
+
+Example:
+
+data "aws_ami" "amazon_linux" {
+    ...
+}
+
+Instead of hardcoding an AMI ID, Terraform automatically retrieves the latest Amazon Linux AMI.
+
+---
+
+## Terraform Replace
+
+If a resource cannot be updated in-place:
+
+terraform apply -replace=RESOURCE_NAME
+
+Example:
+
+terraform apply -replace=aws_instance.web_server
+
+Terraform destroys the old resource and creates a new one.
+
+---
+
+## Real-world Issue Faced
+
+Problem:
+SSH authentication failed.
+
+Reason:
+The public key uploaded to AWS was different from the private key used locally.
+
+Error:
+
+Permission denied (publickey)
+
+Solution:
+
+- Compared both public keys
+- Corrected the Terraform key file
+- Recreated AWS Key Pair
+- Recreated EC2 Instance
+- Successfully connected using SSH
+
+Interview Learning:
+
+Always verify the uploaded public key matches the private key used for authentication.

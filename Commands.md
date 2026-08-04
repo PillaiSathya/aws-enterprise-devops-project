@@ -250,3 +250,74 @@ aws ec2 describe-security-groups \
 --filters "Name=tag:Project,Values=aws-enterprise-devops" \
 --region ap-south-1 \
 --no-cli-pager
+
+# Session 5 Commands
+
+## Verify Infrastructure
+
+```bash
+terraform state list
+terraform state show aws_instance.web_server
+terraform state show aws_key_pair.deployer
+```
+
+## Verify Key Pair
+
+```bash
+aws ec2 describe-key-pairs \
+--key-names aws-enterprise-key \
+--region ap-south-1
+```
+
+## Verify EC2
+
+```bash
+aws ec2 describe-instances \
+--instance-ids <INSTANCE_ID> \
+--region ap-south-1
+```
+
+## Get Public IP
+
+```bash
+aws ec2 describe-instances \
+--instance-ids <INSTANCE_ID> \
+--region ap-south-1 \
+--query "Reservations[].Instances[].PublicIpAddress"
+```
+
+## SSH
+
+```bash
+chmod 400 ~/.ssh/aws-key-2
+
+ssh -i ~/.ssh/aws-key-2 ec2-user@<PUBLIC_IP>
+```
+
+## Linux Commands
+
+```bash
+whoami
+
+hostname
+
+cat /etc/os-release
+```
+
+## Debug SSH Keys
+
+```bash
+cat ~/.ssh/aws-key-2.pub
+
+cat keys/aws-enterprise-key.pub
+
+ssh-keygen -lf ~/.ssh/aws-key-2.pub
+
+terraform state show aws_key_pair.deployer
+```
+
+## Replace Resource
+
+```bash
+terraform apply -replace=aws_instance.web_server
+```

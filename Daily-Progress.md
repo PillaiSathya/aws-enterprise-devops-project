@@ -346,3 +346,70 @@ An Internet Gateway (IGW) is a highly available AWS-managed component that enabl
 - Deploy EC2 into Public Subnet 1
 - Connect to EC2 using SSH
 - Install and verify Nginx Web Server
+
+## Session 5 – EC2 Deployment and SSH Access
+
+Date: 4 August 2026
+
+
+## Objectives
+Create AWS Key Pair using Terraform
+Launch Amazon Linux EC2 Instance
+Connect to EC2 using SSH
+Troubleshoot SSH Authentication
+Completed Tasks
+Created AWS Key Pair (aws-enterprise-key)
+Retrieved latest Amazon Linux 2023 AMI using Terraform Data Source
+Launched EC2 Instance (t3.micro) in Public Subnet
+Associated Security Group with EC2
+Assigned Public IP Address
+Verified EC2 creation using Terraform State
+Verified EC2 in AWS CLI
+Verified EC2 in AWS Console
+Successfully connected to EC2 using SSH
+Issue Encountered
+
+### SSH connection initially failed with:
+
+Permission denied (publickey)
+Root Cause
+
+The public key uploaded to AWS (keys/aws-enterprise-key.pub) did not match the private key used for SSH (~/.ssh/aws-key-2).
+
+Terraform correctly created the AWS Key Pair using the file specified in the configuration, but a different local private key was used for authentication.
+
+### Resolution
+Compared both public keys.
+Identified the mismatch.
+Updated keys/aws-enterprise-key.pub with the correct public key.
+Recreated the AWS Key Pair.
+Recreated the EC2 instance using:
+terraform apply -replace=aws_instance.web_server
+Successfully connected to the new EC2 instance via SSH.
+
+## Commands Used
+terraform plan
+terraform apply
+
+terraform state list
+
+terraform state show aws_key_pair.deployer
+
+aws ec2 describe-instances
+
+aws ec2 describe-key-pairs
+
+ssh -i ~/.ssh/aws-key-2 ec2-user@<public-ip>
+
+whoami
+hostname
+cat /etc/os-release
+Concepts Learned
+Terraform Data Sources
+AWS Key Pair Management
+EC2 Launch Process
+SSH Authentication
+Public Key vs Private Key
+Terraform Resource Replacement (-replace)
+Infrastructure Troubleshooting
+Importance of Matching SSH Key Pairs

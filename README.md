@@ -90,6 +90,8 @@ Monitoring
 - Route Table Associated with Public Subnets ✅
 - Internet Route (0.0.0.0/0) Added ✅
 - Web Security Group Created ✅
+- Created Security Groups
+- Launch EC2 Instances
 
 ### Git
 - Git Repository Initialized ✅
@@ -100,11 +102,6 @@ Monitoring
 
 ## Next Milestones
 
-- ⏳ Configure Route Tables
-- ⏳ Associate Route Tables
-- ⏳ Configure NAT Gateway
-- ⏳ Create Security Groups
-- ⏳ Launch EC2 Instances
 - ⏳ Configure Ansible
 - ⏳ Install Jenkins
 - ⏳ Deploy Docker Applications
