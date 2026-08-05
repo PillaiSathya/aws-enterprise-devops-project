@@ -413,3 +413,113 @@ Public Key vs Private Key
 Terraform Resource Replacement (-replace)
 Infrastructure Troubleshooting
 Importance of Matching SSH Key Pairs
+
+# Day Progress - 05 August 2026
+
+## Objectives
+- Verify Terraform-managed EC2 instance
+- Connect to EC2 using SSH
+- Explore Amazon Linux 2023
+- Install and configure Nginx
+- Deploy a simple web page
+
+---
+
+## Tasks Completed
+
+### Terraform
+
+- Verified Terraform state
+
+```bash
+terraform state list
+Confirmed infrastructure resources are managed by Terraform.
+Ran Terraform plan.
+```
+### Observation:
+
+Terraform planned to replace the EC2 instance because the latest Amazon Linux AMI ID had changed.
+No infrastructure changes were applied.
+EC2
+
+### Retrieved Public IP
+
+aws ec2 describe-instances \
+--instance-ids <instance-id> \
+--region ap-south-1 \
+--query "Reservations[].Instances[].PublicIpAddress"
+
+### Connected using SSH
+
+ssh -i ~/.ssh/aws-key-2 ec2-user@<public-ip>
+
+Verified
+
+whoami
+hostname
+Amazon Linux Version
+uptime
+memory
+disk usage
+network interfaces
+routing table
+Package Management
+
+Updated packages
+- sudo dnf update -y
+
+Installed Nginx
+- sudo dnf install nginx -y
+
+Nginx
+Verified installation
+- nginx -v
+
+Started service
+- sudo systemctl start nginx
+
+Checked status
+- sudo systemctl status nginx
+
+Enabled automatic startup
+- sudo systemctl enable nginx
+
+Verified locally
+- curl localhost
+
+Successfully displayed the default Nginx page.
+
+Custom Web Page
+
+Edited
+
+/usr/share/nginx/html/index.html
+
+Created a custom HTML page.
+
+Verified
+
+- curl localhost
+
+Output displayed
+
+AWS Enterprise DevOps Project
+Infrastructure Provisioned using Terraform
+Provisioned with Terraform
+Running on Amazon Linux 2023
+Nginx Web Server
+Created by Sathya Pillai
+
+### Lessons Learned
+Terraform state only tracks infrastructure resources.
+Starting a stopped EC2 instance changes only the public IP.
+SSH key mismatch occurred because Terraform key pair and local private key were different.
+EC2 replacement can occur automatically when using a dynamic AMI data source.
+Nginx service must be started and enabled separately.
+Amazon Linux 2023 uses DNF instead of YUM.
+
+### Next Steps
+Verify browser access on port 80.
+Open HTTP access if required.
+Automate Nginx installation using Terraform user_data.
+Remove manual server configuration.

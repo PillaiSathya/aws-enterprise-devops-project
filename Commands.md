@@ -321,3 +321,86 @@ terraform state show aws_key_pair.deployer
 ```bash
 terraform apply -replace=aws_instance.web_server
 ```
+# Commands Used - August-05
+
+## Terraform
+
+```bash
+terraform init
+terraform validate
+terraform fmt
+terraform plan
+terraform apply
+terraform state list
+terraform destroy
+```
+
+---
+
+## AWS CLI
+
+```bash
+aws ec2 describe-instances \
+--instance-ids <instance-id> \
+--region ap-south-1 \
+--query "Reservations[].Instances[].PublicIpAddress"
+```
+
+---
+
+## SSH
+
+```bash
+ssh -i ~/.ssh/aws-key-2 ec2-user@<public-ip>
+```
+
+---
+
+## Linux
+
+```bash
+whoami
+hostname
+uptime
+df -h
+free -m
+ip addr
+ip route
+cat /etc/os-release
+```
+---
+
+## Package Management
+
+```bash
+sudo dnf update -y
+sudo dnf install nginx -y
+```
+---
+
+## Nginx
+
+```bash
+nginx -v
+sudo systemctl start nginx
+sudo systemctl enable nginx
+sudo systemctl status nginx
+curl localhost
+```
+---
+
+## HTML
+
+```bash
+sudo vi /usr/share/nginx/html/index.html
+```
+---
+
+## Git
+
+```bash
+git status
+git add .
+git commit -m "Configured Nginx on EC2"
+git push origin main
+```

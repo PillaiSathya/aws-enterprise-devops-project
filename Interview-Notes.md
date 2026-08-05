@@ -302,3 +302,111 @@ Solution:
 Interview Learning:
 
 Always verify the uploaded public key matches the private key used for authentication.
+
+
+---
+
+# Interview Notes - August-05
+
+## Why did Terraform want to recreate the EC2 instance?
+
+Terraform uses the latest Amazon Linux AMI through a data source.
+
+Whenever AWS releases a newer AMI, Terraform detects that the AMI ID has changed.
+
+Since the AMI attribute is immutable, Terraform destroys the old EC2 instance and creates a new one.
+
+---
+
+## Why did SSH initially fail?
+
+Terraform created an AWS Key Pair using one public key.
+
+The SSH connection used a different private key.
+
+Because the keys were not a matching pair, authentication failed.
+
+The issue was resolved by:
+
+- generating a new SSH key pair
+- updating Terraform to use the new public key
+- replacing the AWS Key Pair
+- recreating the EC2 instance
+- connecting using the matching private key
+
+---
+
+## Amazon Linux 2023
+
+Package Manager
+dnf
+
+Default User
+ec2-user
+
+Service Manager
+systemctl
+---
+
+## Commands commonly used during server verification
+
+whoami
+hostname
+uptime
+df -h
+free -m
+ip addr
+ip route
+cat /etc/os-release
+---
+
+## Nginx
+
+Install
+sudo dnf install nginx -y
+
+Start
+sudo systemctl start nginx
+
+Enable
+sudo systemctl enable nginx
+
+Status
+sudo systemctl status nginx
+
+Version
+nginx -v
+
+Test locally
+curl localhost
+---
+
+## Interview Questions
+
+Q. Why enable a service?
+
+To ensure the service automatically starts after every reboot.
+
+---
+
+Q. Difference between start and enable?
+
+start
+
+Starts immediately.
+
+enable
+
+Starts automatically during system boot.
+
+---
+
+Q. Why use curl localhost?
+
+To verify the web server is serving HTTP content locally before testing external connectivity.
+
+---
+
+Q. Why use Terraform?
+
+Infrastructure becomes repeatable, version-controlled, and easily reproducible across environments.

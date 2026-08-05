@@ -11,3 +11,6 @@ override.tf.json
 *_override.tf.json
 .terraformrc
 terraform.rc
+# Ignore Terraform-generated SSH keys
+terraform/environments/dev/keys/*
+!terraform/environments/dev/keys/.gitkeep
