@@ -404,3 +404,15 @@ git add .
 git commit -m "Configured Nginx on EC2"
 git push origin main
 ```
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+
+terraform output
+
+curl http://13.232.185.188/
+
+Also documenting below for --> in main.tf:
+
+user_data_replace_on_change = true

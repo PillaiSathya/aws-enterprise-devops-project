@@ -23,28 +23,72 @@ The objective is to build an end-to-end cloud-native CI/CD platform that follows
 
 ---
 
-## Project Architecture (Planned)
+## Project Architecture
+
+### Current AWS Infrastructure
+
+```text
+                    AWS
+                     │
+                     ▼
+                  VPC
+              10.0.0.0/16
+                     │
+          ┌──────────┴──────────┐
+          ▼                     ▼
+   Public Subnet 1       Public Subnet 2
+    10.0.1.0/24           10.0.2.0/24
+          │
+          ▼
+         EC2
+          │
+      User Data
+          │
+          ▼
+        Nginx
+          │
+          ▼
+      Custom HTML
+          │
+          ▼
+       HTTP :80
+          │
+          ▼
+       Internet
 
 ```
+
+### Target DevOps Architecture
+
 GitHub
    │
    ▼
 Jenkins
    │
+   ▼
 Terraform
    │
+   ▼
 AWS Infrastructure
-(VPC, Subnets, EC2, Security Groups)
    │
-Docker
-   │
-Kubernetes
-   │
-ArgoCD
-   │
-Monitoring
-(Prometheus + Grafana)
-```
+   ├── VPC
+   ├── Subnets
+   ├── Security Groups
+   └── EC2
+        │
+        ▼
+      Docker
+        │
+        ▼
+   Kubernetes
+        │
+        ▼
+      ArgoCD
+        │
+        ▼
+   Monitoring
+   ├── Prometheus
+   └── Grafana
 
 ---
 
@@ -76,6 +120,9 @@ Monitoring
 - Terraform Project Structure Created ✅
 - Terraform Initialized (`terraform init`) ✅
 - Terraform Provider Configured ✅
+- Terraform Configuration Validated (`terraform validate`) ✅
+- Terraform State Managed and Verified ✅
+- Terraform Outputs Configured ✅
 
 ### AWS Networking
 - Custom VPC Created Using Terraform ✅
@@ -90,8 +137,34 @@ Monitoring
 - Route Table Associated with Public Subnets ✅
 - Internet Route (0.0.0.0/0) Added ✅
 - Web Security Group Created ✅
-- Created Security Groups
-- Launch EC2 Instances
+- HTTP (80) Access Configured ✅
+- SSH (22) Access Configured ✅
+
+### EC2 and Web Server
+
+- AWS Key Pair Created Using Terraform ✅
+- Amazon Linux 2023 AMI Retrieved Using Terraform Data Source ✅
+- EC2 Instance Provisioned Using Terraform ✅
+- EC2 Deployed into Public Subnet ✅
+- EC2 Public IP Assigned ✅
+- SSH Access Verified ✅
+- Nginx Installation Automated Using Terraform User Data ✅
+- Nginx Service Automatically Enabled and Started ✅
+- Custom HTML Application Automatically Deployed ✅
+- `user_data_replace_on_change = true` Configured ✅
+- EC2 Replacement Through Terraform Verified ✅
+- Web Application Verified Using Browser ✅
+- Web Application Verified Using `curl` ✅
+
+### Application Verification
+
+The application is currently accessible through the EC2 public IP.
+
+Example verification:
+
+```bash
+curl http://13.232.185.188/
+```
 
 ### Git
 - Git Repository Initialized ✅

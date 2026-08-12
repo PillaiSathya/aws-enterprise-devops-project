@@ -523,3 +523,126 @@ Verify browser access on port 80.
 Open HTTP access if required.
 Automate Nginx installation using Terraform user_data.
 Remove manual server configuration.
+
+## Session 6 – EC2 User Data Automation and Web Application Deployment
+
+**Date:** 12 August 2026
+
+### Objectives
+
+- Automate Nginx installation using Terraform User Data
+- Understand EC2 User Data execution
+- Handle User Data changes with Terraform
+- Replace EC2 automatically when User Data changes
+- Deploy the web page automatically during EC2 provisioning
+- Verify the application using browser and curl
+
+### Completed Tasks
+
+- Added Terraform `user_data` to the EC2 resource
+- Automated Amazon Linux package updates using DNF
+- Automated Nginx installation
+- Automated Nginx service enablement
+- Automated Nginx service startup
+- Automated creation of `/usr/share/nginx/html/index.html`
+- Added custom AWS Enterprise DevOps HTML page
+- Added `user_data_replace_on_change = true`
+- Ran `terraform fmt`
+- Ran `terraform validate`
+- Ran `terraform plan`
+- Verified Terraform detected the EC2 replacement
+- Replaced the previous EC2 instance using Terraform
+- New EC2 Instance ID: `i-022138cfd9a4d7aa7`
+- Added Terraform outputs for VPC ID, EC2 public IP, and public DNS
+- Terraform output returned public IP: `13.232.185.188`
+- Verified application through browser
+- Verified application using `curl`
+
+### User Data Automation
+
+Terraform automatically executes the following during EC2 initialization:
+
+```bash
+dnf update -y
+dnf install -y nginx
+systemctl enable nginx
+systemctl start nginx
+```
+
+The User Data script also creates:
+
+/usr/share/nginx/html/index.html
+
+with the AWS Enterprise DevOps project web page.
+
+### Verification
+
+Verified the application using:
+
+curl http://13.232.185.188/
+
+Successfully returned:
+
+AWS Enterprise DevOps Project
+Infrastructure Provisioned using Terraform
+EC2 Provisioned using Terraform
+Nginx Installed Automatically using User Data
+Created by Sathya
+Terraform Outputs
+vpc_id = "vpc-05f36d8f35a4b2cfc"
+web_server_public_ip = "13.232.185.188"
+web_server_public_dns = ""
+Important Issue Resolved
+
+Previously, changing Terraform User Data did not automatically rerun the initialization script on the existing EC2 instance.
+
+Added:
+
+user_data_replace_on_change = true
+
+This causes Terraform to replace the EC2 instance when User Data changes, allowing the initialization script to execute again on the new instance.
+
+### Lessons Learned
+EC2 User Data runs during the initial boot of an instance.
+User Data is useful for automating initial server configuration.
+Terraform user_data_replace_on_change can force EC2 replacement when User Data changes.
+Terraform outputs provide useful information from managed infrastructure.
+A public subnet, Internet Gateway, route table, security group, and public IP are required for public HTTP access.
+Infrastructure automation removes the need for manual Nginx installation and configuration.
+curl can be used to verify an HTTP application from the command line.
+Milestone Achieved
+
+Terraform now provisions the infrastructure and automatically configures the web server.
+
+Terraform
+    ↓
+AWS VPC
+    ↓
+Public Subnet
+    ↓
+Internet Gateway
+    ↓
+Route Table
+    ↓
+Security Group
+    ↓
+EC2
+    ↓
+User Data
+    ↓
+Nginx
+    ↓
+Custom HTML
+    ↓
+HTTP :80
+    ↓
+Browser / curl
+
+### Next Steps
+Review and clean Terraform configuration
+Verify Terraform state and outputs
+Update project README
+Update architecture documentation
+Update interview notes
+Commit the completed milestone to Git
+Continue with the next AWS/DevOps component

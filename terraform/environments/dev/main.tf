@@ -17,7 +17,7 @@ data "aws_ami" "amazon_linux" {
 
 resource "aws_key_pair" "deployer" {
   key_name   = "aws-enterprise-key"
-  public_key = file("${path.module}/keys/aws-enterprise-key.pub")
+  public_key = file("/home/sathya/.ssh/aws-key-2.pub")
 }
 
 resource "aws_vpc" "main" {
@@ -146,6 +146,43 @@ resource "aws_instance" "web_server" {
   key_name               = aws_key_pair.deployer.key_name
 
   associate_public_ip_address = true
+
+  user_data = <<-EOF
+#!/bin/bash
+
+set -e
+
+dnf update -y
+dnf install -y nginx
+
+systemctl enable nginx
+systemctl start nginx
+
+cat > /usr/share/nginx/html/index.html <<'HTML'
+<!DOCTYPE html>
+<html>
+<head>
+<title>AWS Enterprise DevOps</title>
+</head>
+<body>
+
+<h1>AWS Enterprise DevOps Project</h1>
+
+<h2>Infrastructure Provisioned using Terraform</h2>
+
+<p>EC2 Provisioned using Terraform</p>
+
+<p>Nginx Installed Automatically using User Data</p>
+
+<p>Created by Sathya</p>
+
+</body>
+</html>
+HTML
+
+EOF
+
+  user_data_replace_on_change = true
 
   tags = {
     Name        = "web-server"
