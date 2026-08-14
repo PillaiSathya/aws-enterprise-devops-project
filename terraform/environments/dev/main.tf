@@ -25,8 +25,8 @@ resource "aws_vpc" "main" {
 
   tags = {
     Name        = "aws-enterprise-dev-vpc"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
@@ -42,8 +42,8 @@ resource "aws_subnet" "public_subnet_1" {
 
   tags = {
     Name        = "public-subnet-1"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
@@ -55,8 +55,8 @@ resource "aws_subnet" "public_subnet_2" {
 
   tags = {
     Name        = "public-subnet-2"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
@@ -65,8 +65,8 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name        = "aws-enterprise-igw"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
@@ -75,8 +75,8 @@ resource "aws_route_table" "public_route_table" {
 
   tags = {
     Name        = "public-route-table"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
@@ -132,15 +132,15 @@ resource "aws_security_group" "web_sg" {
 
   tags = {
     Name        = "web-security-group"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
 
 resource "aws_instance" "web_server" {
 
   ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = "t3.micro"
+  instance_type          = var.instance_type
   subnet_id              = aws_subnet.public_subnet_1.id
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   key_name               = aws_key_pair.deployer.key_name
@@ -186,7 +186,7 @@ EOF
 
   tags = {
     Name        = "web-server"
-    Environment = "dev"
-    Project     = "aws-enterprise-devops"
+    Environment = var.environment
+    Project     = var.project_name
   }
 }
