@@ -1,17 +1,10 @@
 
 data "aws_ami" "amazon_linux" {
-  most_recent = true
-
   owners = ["amazon"]
 
   filter {
-    name   = "name"
-    values = ["al2023-ami-*-x86_64"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+    name   = "image-id"
+    values = ["ami-0081672cf20076b76"]
   }
 }
 
@@ -145,7 +138,6 @@ resource "aws_instance" "web_server" {
   vpc_security_group_ids = [aws_security_group.web_sg.id]
   key_name               = aws_key_pair.deployer.key_name
 
-  associate_public_ip_address = true
 
   user_data = <<-EOF
 #!/bin/bash
@@ -186,6 +178,16 @@ EOF
 
   tags = {
     Name        = "web-server"
+    Environment = var.environment
+    Project     = var.project_name
+  }
+}
+
+resource "aws_eip" "web_server" {
+  instance = aws_instance.web_server.id
+
+  tags = {
+    Name        = "web-server-eip"
     Environment = var.environment
     Project     = var.project_name
   }

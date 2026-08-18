@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project extends my previous GitOps CI/CD project by deploying a complete production-style DevOps infrastructure on AWS using Terraform, Ansible, Jenkins, Docker, Kubernetes, and GitHub.
+This project extends my previous GitOps CI/CD project by deploying a complete production-style DevOps infrastructure on AWS using Terraform, Jenkins, Docker, Kubernetes, and GitHub.
 
 The objective is to build an end-to-end cloud-native CI/CD platform that follows Infrastructure as Code (IaC), GitOps principles, automation, monitoring, and security best practices.
 
@@ -17,10 +17,8 @@ The objective is to build an end-to-end cloud-native CI/CD platform that follows
 - Jenkins
 - Docker
 - Kubernetes
-- Ansible
 - Prometheus
 - Grafana
-
 ---
 
 ## Project Architecture
@@ -96,7 +94,6 @@ AWS Infrastructure
 
 - Build infrastructure using Terraform
 - Deploy applications on AWS
-- Automate provisioning using Ansible
 - Build CI/CD pipeline using Jenkins
 - Deploy to Kubernetes
 - Implement GitOps with ArgoCD
@@ -123,6 +120,10 @@ AWS Infrastructure
 - Terraform Configuration Validated (`terraform validate`) ✅
 - Terraform State Managed and Verified ✅
 - Terraform Outputs Configured ✅
+- Terraform Variables Configured ✅
+- Environment-Specific Values Parameterized ✅
+- Terraform Configuration Validated After Refactoring ✅
+- Terraform Plan Verified with No Infrastructure Changes ✅
 
 ### AWS Networking
 - Custom VPC Created Using Terraform ✅
@@ -165,6 +166,25 @@ Example verification:
 ```bash
 curl http://13.232.185.188/
 ```
+### Docker
+
+- Python Flask Application Created ✅
+- Dockerfile Created ✅
+- Docker Image Built Successfully ✅
+- Docker Container Tested Locally ✅
+- Application Verified Inside Container Using `curl` ✅
+- Docker Image Tagged for Docker Hub ✅
+- Docker Image Pushed to Docker Hub ✅
+
+### Kubernetes
+
+- Kubernetes Deployment Manifest Created ✅
+- Deployment Applied Successfully ✅
+- 2 Application Replicas Running ✅
+- Kubernetes Service Created ✅
+- NodePort Service Configured ✅
+- Service Endpoints Verified ✅
+- Application Accessed Through Kubernetes Service ✅
 
 ### Git
 - Git Repository Initialized ✅
@@ -175,10 +195,9 @@ curl http://13.232.185.188/
 
 ## Next Milestones
 
-- ⏳ Configure Ansible
-- ⏳ Install Jenkins
-- ⏳ Deploy Docker Applications
-- ⏳ Configure Kubernetes
+- ⏳ Build CI/CD pipeline using Jenkins
+- ⏳ Automate Docker image build and push
+- ⏳ Automate Kubernetes deployment
 - ⏳ Implement GitOps using ArgoCD
 - ⏳ Configure Prometheus & Grafana
 

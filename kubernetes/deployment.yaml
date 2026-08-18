@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: aws-enterprise-devops
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: aws-enterprise-devops
+
+  template:
+    metadata:
+      labels:
+        app: aws-enterprise-devops
+
+    spec:
+      containers:
+        - name: aws-enterprise-devops
+          image: pillaisathya/aws-enterprise-devops:1.0
+
+          ports:
+            - containerPort: 5000
