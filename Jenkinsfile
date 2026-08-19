@@ -15,5 +15,11 @@ pipeline {
                 echo 'GitHub repository checked out successfully!'
             }
         }
+
+        stage('Docker Build') {
+            steps {
+                sh 'docker build -t aws-enterprise-devops:jenkins .'
+            }
+        }
     }
 }
